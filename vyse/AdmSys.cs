@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System.Data;
+using System.Windows.Forms;
 
 namespace vyse
 {
@@ -198,33 +199,90 @@ namespace vyse
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string auxTitulo = comboBox1.Text;
-            
-            //string auxAutor = comboBox2.Text;
-            //string auxGenero = comboBox3.Text;
-            //string auxIdioma = comboBox4.Text;
-            //string auxVeiculo = comboBox5.Text;
+            List<string> inputs = new List<string> { comboBox1.Text, comboBox2.Text, comboBox3.Text, comboBox4.Text, comboBox5.Text};
+            if (inputs.Contains(""))
+            {
+                MessageBox.Show("Há valores não preenchidos","Erro na adição");
+                return;
+            }
 
+            List<int> tempList = new List<int>();
+            List<string> fatos = new List<string> {"fato_titulo","fato_autor","fato_genero","fato_idioma","fato_veiculos"};
+            List<string> type = new List<string> { "titulo","autor","genero","idioma","placa"};
+            string text = "";
+            
             MySqlConnection conn = new MySqlConnection(connectionString);
             conn.Open();
             MySqlCommand comm = conn.CreateCommand();
-            comm.CommandText = $"SELECT id FROM fato_titulo WHERE titulo = '{auxTitulo}'";
-            string a = (string)comm.ExecuteScalar();
-            MessageBox.Show(a);
-            //comm.CommandText = $"INSERT INTO dim_livros(titulo,autor,genero,idioma,veiculo) VALUES(@titulo,@autor,@genero,@idioma,@veiculo)";
-            //comm.Parameters.AddWithValue($"@titulo", comboBox1.Text);
-            //comm.Parameters.AddWithValue($"@autor", comboBox2.Text);
-            //comm.Parameters.AddWithValue($"@genero", comboBox3.Text);
-            //comm.Parameters.AddWithValue($"@idioma", comboBox4.Text);
-            //comm.Parameters.AddWithValue($"@veiculo", comboBox5.Text);
-            //comm.ExecuteNonQuery();
-            conn.Close();
-            //tabControl1.TabPages.Remove(tabPage2);
-            //tabControl1.SelectedIndex = 0;
-            //nowTable = "dim_livros";
 
+            for (int i = 0; i < inputs.Count; i++)
+            {
+                comm.CommandText = $"SELECT id FROM {fatos[i]} WHERE {type[i]} = '{inputs[i]}'";
+                int id = Convert.ToInt32(comm.ExecuteScalar());
+                if (id == 0)
+                {
+                    if (text != "")
+                        text += $"\n{type[i]} : {inputs[i]}";
+                    else
+                        text += $"{type[i]} : {inputs[i]}";
+                }
+                tempList.Add(id);
+            }
 
+            text += "\nDeseja adiciona-los? Selecione abaixo";
+            DialogResult dialogResult = MessageBox.Show(text, "Os Seguintes Dados não forem encontrados", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                for (int i = 0; i < tempList.Count; i++)
+                {
+                    if (tempList[i] == 0)
+                    {
+                        comm.CommandText = $"INSERT INTO {fatos[i]}({type[i]}) VALUES(@{type[i]})";
+                        comm.Parameters.AddWithValue($"@{type[i]}", inputs[i]);
+                        comm.ExecuteNonQuery();
+                    }
+                }
+
+                comm.CommandText = $"INSERT INTO dim_livros(titulo,autor,genero,idioma,veiculo) VALUES(@titulo,@autor,@genero,@idioma,@veiculo)";
+                comm.Parameters.AddWithValue($"@titulo", tempList[0]);
+                comm.Parameters.AddWithValue($"@autor", tempList[1]);
+                comm.Parameters.AddWithValue($"@genero", tempList[2]);
+                comm.Parameters.AddWithValue($"@idioma", tempList[3]);
+                comm.Parameters.AddWithValue($"@veiculo", tempList[4]);
+                comm.ExecuteNonQuery();
+                MessageBox.Show("Os valores foram adicionados no sistema");
+                conn.Close();
+
+                if (((Button)sender).Text == "Adicionar e Continuar")
+                {
+                    tabControl1.TabPages.Remove(tabPage2);
+                    tabControl1.SelectedIndex = 0;
+                    nowTable = "dim_livros";
+                }
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ClearAddBookScreen(sender, e);
+            tabControl1.TabPages.Remove(tabPage2);
+            tabControl1.SelectedIndex = 0;
+            nowTable = "dim_livros";
+        }
+
+        private void ClearAddBookScreen(object sender, EventArgs e)
+        {
+            comboBox1.Text = "";
+            comboBox2.Text = "";
+            comboBox3.Text = "";
+            comboBox4.Text = "";
+            comboBox5.Text = "";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            button2_Click(sender, e);
+            ClearAddBookScreen(sender, e);
         }
     }
 }
-
