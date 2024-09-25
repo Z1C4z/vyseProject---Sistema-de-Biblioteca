@@ -6,14 +6,20 @@ namespace vyse
 {
     public partial class AdmSys : Form
     {
-        private const string connectionString = "Server=127.0.0.1;Port=3306;Database=bibliotecavyse;User ID=root;Password=acesso123;";
+        public static string connectionString = "Server=127.0.0.1;Port=3306;Database=bibliotecavyse;User ID=root;Password=acesso123;";
         private string nowTable = "";
         private string dataTypeOnTable = "";
         private string senderNow = "";
+        public static int typeUser = 0;
 
         public AdmSys()
         {
             InitializeComponent();
+            if (typeUser == 0)
+                MessageBox.Show("Logado como Cliente","Sucesso no Login");
+            else if (typeUser == 1)
+                MessageBox.Show("Logado como Administrador", "Sucesso no Login");
+
             tabControl1.TabPages.Remove(tabPage2);
         }
 
@@ -128,7 +134,7 @@ namespace vyse
             if (generalDataGrid.SelectedRows.Count > 0)
             {
                 generalButtonAdd.Text = "Confirmar Edição";
-                generalAddTextBox.Text = generalDataGrid.SelectedRows[0].Cells[dataTypeOnTable].Value.ToString();
+                generalAddTextBox.Text = Convert.ToString(generalDataGrid.SelectedRows[0].Cells[dataTypeOnTable].Value);
             }
             else
             {
@@ -284,5 +290,6 @@ namespace vyse
             button2_Click(sender, e);
             ClearAddBookScreen(sender, e);
         }
+    
     }
 }

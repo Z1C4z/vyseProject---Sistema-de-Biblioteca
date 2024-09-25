@@ -36,8 +36,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.login_textBox_password = new System.Windows.Forms.TextBox();
             this.login_button_cadaster = new System.Windows.Forms.Button();
-            this.login_radio_adm = new System.Windows.Forms.RadioButton();
-            this.login_radio_leitor = new System.Windows.Forms.RadioButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -51,6 +49,8 @@
             this.cad_textBox_password = new System.Windows.Forms.TextBox();
             this.cad_button_cancel = new System.Windows.Forms.Button();
             this.cad_button_confirm = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cad_taxtBox_confirmword = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -66,6 +66,7 @@
             this.login_button_confirm.TabIndex = 0;
             this.login_button_confirm.Text = "Confirmar";
             this.login_button_confirm.UseVisualStyleBackColor = true;
+            this.login_button_confirm.Click += new System.EventHandler(this.login_button_confirm_Click);
             // 
             // groupBox1
             // 
@@ -75,8 +76,6 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.login_textBox_password);
             this.groupBox1.Controls.Add(this.login_button_cadaster);
-            this.groupBox1.Controls.Add(this.login_radio_adm);
-            this.groupBox1.Controls.Add(this.login_radio_leitor);
             this.groupBox1.Controls.Add(this.login_button_confirm);
             this.groupBox1.Location = new System.Drawing.Point(309, 56);
             this.groupBox1.Name = "groupBox1";
@@ -137,28 +136,6 @@
             this.login_button_cadaster.UseVisualStyleBackColor = true;
             this.login_button_cadaster.Click += new System.EventHandler(this.button2_Click);
             // 
-            // login_radio_adm
-            // 
-            this.login_radio_adm.AutoSize = true;
-            this.login_radio_adm.Location = new System.Drawing.Point(271, 256);
-            this.login_radio_adm.Name = "login_radio_adm";
-            this.login_radio_adm.Size = new System.Drawing.Size(101, 19);
-            this.login_radio_adm.TabIndex = 6;
-            this.login_radio_adm.TabStop = true;
-            this.login_radio_adm.Text = "Administrador";
-            this.login_radio_adm.UseVisualStyleBackColor = true;
-            // 
-            // login_radio_leitor
-            // 
-            this.login_radio_leitor.AutoSize = true;
-            this.login_radio_leitor.Location = new System.Drawing.Point(183, 256);
-            this.login_radio_leitor.Name = "login_radio_leitor";
-            this.login_radio_leitor.Size = new System.Drawing.Size(55, 19);
-            this.login_radio_leitor.TabIndex = 5;
-            this.login_radio_leitor.TabStop = true;
-            this.login_radio_leitor.Text = "Leitor";
-            this.login_radio_leitor.UseVisualStyleBackColor = true;
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -193,6 +170,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.cad_taxtBox_confirmword);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.cad_textBox_gender);
             this.groupBox2.Controls.Add(this.label2);
@@ -211,7 +190,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(122, 248);
+            this.label7.Location = new System.Drawing.Point(122, 306);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(91, 15);
             this.label7.TabIndex = 18;
@@ -221,7 +200,7 @@
             // 
             this.cad_textBox_gender.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cad_textBox_gender.FormattingEnabled = true;
-            this.cad_textBox_gender.Location = new System.Drawing.Point(122, 266);
+            this.cad_textBox_gender.Location = new System.Drawing.Point(122, 324);
             this.cad_textBox_gender.Name = "cad_textBox_gender";
             this.cad_textBox_gender.Size = new System.Drawing.Size(286, 33);
             this.cad_textBox_gender.TabIndex = 17;
@@ -271,7 +250,7 @@
             // 
             // cad_button_cancel
             // 
-            this.cad_button_cancel.Location = new System.Drawing.Point(122, 387);
+            this.cad_button_cancel.Location = new System.Drawing.Point(122, 445);
             this.cad_button_cancel.Name = "cad_button_cancel";
             this.cad_button_cancel.Size = new System.Drawing.Size(286, 23);
             this.cad_button_cancel.TabIndex = 10;
@@ -280,20 +259,37 @@
             // 
             // cad_button_confirm
             // 
-            this.cad_button_confirm.Location = new System.Drawing.Point(122, 318);
+            this.cad_button_confirm.Location = new System.Drawing.Point(122, 376);
             this.cad_button_confirm.Name = "cad_button_confirm";
             this.cad_button_confirm.Size = new System.Drawing.Size(286, 54);
             this.cad_button_confirm.TabIndex = 0;
             this.cad_button_confirm.Text = "Confirmar";
             this.cad_button_confirm.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(122, 242);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(96, 15);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "Confrimar Senha";
+            // 
+            // cad_taxtBox_confirmword
+            // 
+            this.cad_taxtBox_confirmword.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cad_taxtBox_confirmword.Location = new System.Drawing.Point(122, 260);
+            this.cad_taxtBox_confirmword.Name = "cad_taxtBox_confirmword";
+            this.cad_taxtBox_confirmword.Size = new System.Drawing.Size(286, 32);
+            this.cad_taxtBox_confirmword.TabIndex = 19;
+            // 
+            // LoginSys
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1178, 716);
             this.Controls.Add(this.tabControl1);
-            this.Name = "Form1";
+            this.Name = "LoginSys";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -310,8 +306,6 @@
 
         private Button login_button_confirm;
         private GroupBox groupBox1;
-        private RadioButton login_radio_adm;
-        private RadioButton login_radio_leitor;
         private Button login_button_cadaster;
         private Label label4;
         private Label label3;
@@ -331,5 +325,7 @@
         private TextBox cad_textBox_password;
         private Button cad_button_cancel;
         private Button cad_button_confirm;
+        private Label label8;
+        private TextBox cad_taxtBox_confirmword;
     }
 }
