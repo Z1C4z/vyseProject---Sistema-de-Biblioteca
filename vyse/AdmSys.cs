@@ -1,4 +1,17 @@
-﻿using MySql.Data.MySqlClient;
+﻿/*
+Coisas que tem para ser feitas,
+Separação de ADM para Usuario;
+tela de emprestimos funcional
+{
+    selecione um livro;
+    clique em fazer emprestimo;
+    Selecione uma data de devolução em ate 30 dias;
+    BOOM;
+}
+tela de historico de emprestismos com o ultimo emprestimo efetuado pela pessoa;
+*/
+
+using MySql.Data.MySqlClient;
 using System.Data;
 
 namespace vyse
