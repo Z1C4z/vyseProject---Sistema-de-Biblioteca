@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginSys));
             this.login_button_confirm = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.login_vissebleButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.login_textBox_usu = new System.Windows.Forms.TextBox();
@@ -40,6 +42,9 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cad_button_vissiblePW = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cad_taxtBox_confirmword = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.cad_textBox_gender = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,8 +54,6 @@
             this.cad_textBox_password = new System.Windows.Forms.TextBox();
             this.cad_button_cancel = new System.Windows.Forms.Button();
             this.cad_button_confirm = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.cad_taxtBox_confirmword = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -70,6 +73,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.login_vissebleButton);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.login_textBox_usu);
@@ -82,6 +86,22 @@
             this.groupBox1.Size = new System.Drawing.Size(554, 585);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
+            // 
+            // login_vissebleButton
+            // 
+            this.login_vissebleButton.BackColor = System.Drawing.Color.White;
+            this.login_vissebleButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("login_vissebleButton.BackgroundImage")));
+            this.login_vissebleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.login_vissebleButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.login_vissebleButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.login_vissebleButton.Location = new System.Drawing.Point(414, 197);
+            this.login_vissebleButton.Name = "login_vissebleButton";
+            this.login_vissebleButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.login_vissebleButton.Size = new System.Drawing.Size(40, 32);
+            this.login_vissebleButton.TabIndex = 22;
+            this.login_vissebleButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.login_vissebleButton.UseVisualStyleBackColor = false;
+            this.login_vissebleButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // label4
             // 
@@ -123,6 +143,7 @@
             this.login_textBox_password.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.login_textBox_password.Location = new System.Drawing.Point(122, 197);
             this.login_textBox_password.Name = "login_textBox_password";
+            this.login_textBox_password.PasswordChar = '*';
             this.login_textBox_password.Size = new System.Drawing.Size(286, 32);
             this.login_textBox_password.TabIndex = 11;
             // 
@@ -170,6 +191,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cad_button_vissiblePW);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.cad_taxtBox_confirmword);
             this.groupBox2.Controls.Add(this.label7);
@@ -186,6 +208,38 @@
             this.groupBox2.Size = new System.Drawing.Size(554, 585);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
+            // 
+            // cad_button_vissiblePW
+            // 
+            this.cad_button_vissiblePW.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cad_button_vissiblePW.BackgroundImage")));
+            this.cad_button_vissiblePW.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.cad_button_vissiblePW.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cad_button_vissiblePW.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cad_button_vissiblePW.Location = new System.Drawing.Point(414, 197);
+            this.cad_button_vissiblePW.Name = "cad_button_vissiblePW";
+            this.cad_button_vissiblePW.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.cad_button_vissiblePW.Size = new System.Drawing.Size(40, 32);
+            this.cad_button_vissiblePW.TabIndex = 21;
+            this.cad_button_vissiblePW.UseVisualStyleBackColor = true;
+            this.cad_button_vissiblePW.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(122, 242);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(96, 15);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "Confrimar Senha";
+            // 
+            // cad_taxtBox_confirmword
+            // 
+            this.cad_taxtBox_confirmword.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cad_taxtBox_confirmword.Location = new System.Drawing.Point(122, 260);
+            this.cad_taxtBox_confirmword.Name = "cad_taxtBox_confirmword";
+            this.cad_taxtBox_confirmword.PasswordChar = '*';
+            this.cad_taxtBox_confirmword.Size = new System.Drawing.Size(286, 32);
+            this.cad_taxtBox_confirmword.TabIndex = 19;
             // 
             // label7
             // 
@@ -245,6 +299,7 @@
             this.cad_textBox_password.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cad_textBox_password.Location = new System.Drawing.Point(122, 197);
             this.cad_textBox_password.Name = "cad_textBox_password";
+            this.cad_textBox_password.PasswordChar = '*';
             this.cad_textBox_password.Size = new System.Drawing.Size(286, 32);
             this.cad_textBox_password.TabIndex = 11;
             // 
@@ -265,23 +320,7 @@
             this.cad_button_confirm.TabIndex = 0;
             this.cad_button_confirm.Text = "Confirmar";
             this.cad_button_confirm.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(122, 242);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(96, 15);
-            this.label8.TabIndex = 20;
-            this.label8.Text = "Confrimar Senha";
-            // 
-            // cad_taxtBox_confirmword
-            // 
-            this.cad_taxtBox_confirmword.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cad_taxtBox_confirmword.Location = new System.Drawing.Point(122, 260);
-            this.cad_taxtBox_confirmword.Name = "cad_taxtBox_confirmword";
-            this.cad_taxtBox_confirmword.Size = new System.Drawing.Size(286, 32);
-            this.cad_taxtBox_confirmword.TabIndex = 19;
+            this.cad_button_confirm.Click += new System.EventHandler(this.cad_button_confirm_Click);
             // 
             // LoginSys
             // 
@@ -327,5 +366,7 @@
         private Button cad_button_confirm;
         private Label label8;
         private TextBox cad_taxtBox_confirmword;
+        private Button cad_button_vissiblePW;
+        private Button login_vissebleButton;
     }
 }
