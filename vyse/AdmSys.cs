@@ -1,6 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
 using System.Data;
-using System.Windows.Forms;
 
 namespace vyse
 {
@@ -16,7 +15,7 @@ namespace vyse
         {
             InitializeComponent();
             if (typeUser == 0)
-                MessageBox.Show("Logado como Cliente","Sucesso no Login");
+                MessageBox.Show("Logado como Cliente", "Sucesso no Login");
             else if (typeUser == 1)
                 MessageBox.Show("Logado como Administrador", "Sucesso no Login");
 
@@ -25,9 +24,9 @@ namespace vyse
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            senderNow = sender.ToString();
+                senderNow = sender.ToString();
 
-            switch (sender.ToString())
+                switch (sender.ToString())
             {
                 case "Autores":
                     nowTable = "fato_autor";
@@ -205,18 +204,18 @@ namespace vyse
 
         private void button2_Click(object sender, EventArgs e)
         {
-            List<string> inputs = new List<string> { comboBox1.Text, comboBox2.Text, comboBox3.Text, comboBox4.Text, comboBox5.Text};
+            List<string> inputs = new List<string> { comboBox1.Text, comboBox2.Text, comboBox3.Text, comboBox4.Text, comboBox5.Text };
             if (inputs.Contains(""))
             {
-                MessageBox.Show("Há valores não preenchidos","Erro na adição");
+                MessageBox.Show("Há valores não preenchidos", "Erro na adição");
                 return;
             }
 
             List<int> tempList = new List<int>();
-            List<string> fatos = new List<string> {"fato_titulo","fato_autor","fato_genero","fato_idioma","fato_veiculos"};
-            List<string> type = new List<string> { "titulo","autor","genero","idioma","placa"};
+            List<string> fatos = new List<string> { "fato_titulo", "fato_autor", "fato_genero", "fato_idioma", "fato_veiculos" };
+            List<string> type = new List<string> { "titulo", "autor", "genero", "idioma", "placa" };
             string text = "";
-            
+
             MySqlConnection conn = new MySqlConnection(connectionString);
             conn.Open();
             MySqlCommand comm = conn.CreateCommand();
@@ -290,6 +289,6 @@ namespace vyse
             button2_Click(sender, e);
             ClearAddBookScreen(sender, e);
         }
-    
+
     }
 }

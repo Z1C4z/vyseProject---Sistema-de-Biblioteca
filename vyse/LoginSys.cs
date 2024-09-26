@@ -49,17 +49,57 @@ namespace vyse
             conn.Open();
             MySqlCommand mySqlCommand = conn.CreateCommand();
             MySqlCommand comm = mySqlCommand;
-            comm.CommandText = $"SELECT login FROM dim_usuario WHERE login = '{cad_textBox_usu.Text}'";
-            if (Convert.ToString(comm.ExecuteScalar()) == "")
-            {
-                MessageBox.Show("Usuario ja cadastrado, Porfavor ensira um nome diferente");
-            }
-            //cad_textBox_usu.Text;
-            //cad_textBox_password.Text;
-            //cad_taxtBox_confirmword.Text;
-            //cad_textBox_gender.Text;
 
+            comm.CommandText = $"SELECT login FROM dim_usuario WHERE login = '{cad_textBox_usu.Text}'";
+
+            if (cad_textBox_usu.Text == "" || cad_textBox_password.Text == "" || cad_taxtBox_confirmword.Text == "")
+            {
+                MessageBox.Show("Preencha todas as informações","Falha ao efetuar Cadastro");
+                return;
+            }
+
+            if (Convert.ToString(comm.ExecuteScalar()) != "")
+            {
+                MessageBox.Show("Usuario ja cadastrado, Porfavor ensira um nome diferente","Falha ao Cadastrar Usuario");
+                return;
+            }
+
+            if (cad_taxtBox_confirmword.Text != cad_textBox_password.Text)
+            {
+                MessageBox.Show("Os dois campos de Senha devem conter a mesma senha","Falha ao cadastrar senha");
+                return;
+            }
+
+            comm.CommandText = $"SELECT id FROM fato_genero WHERE genero = '{cad_textBox_gender.Text}'";
+            string tempIdGender = Convert.ToString(comm.ExecuteScalar());
+
+            comm.CommandText = $"INSERT INTO dim_usuario(login,senha,genero) VALUES(?login,?senha,?genero)";
+
+            comm.Parameters.AddWithValue($"?login", cad_textBox_usu.Text);
+            comm.Parameters.AddWithValue($"?senha", cad_textBox_password.Text);
+
+            if (tempIdGender == "" && cad_textBox_gender.Text == "")
+                comm.Parameters.AddWithValue($"?genero", DBNull.Value);
+            else if (tempIdGender == "" && cad_textBox_gender.Text != "")
+            {
+                MessageBox.Show("Genero nao Encontrado","Falha ao buscar genero");
+                cad_textBox_gender.Text = "";
+                return;
+            }
+            else
+                comm.Parameters.AddWithValue($"?genero", Convert.ToInt32(tempIdGender));
+
+            comm.ExecuteNonQuery();
             conn.Close();
+
+            MessageBox.Show("Cadastro feito com sucesso");
+
+            tabControl1.SelectedIndex = 0;
+
+            cad_textBox_usu.Text = "";
+            cad_textBox_password.Text = "";
+            cad_taxtBox_confirmword.Text = "";
+            cad_textBox_gender.Text = "";
         }
 
         private void button1_Click(object sender, EventArgs e)
