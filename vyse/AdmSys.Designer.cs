@@ -30,13 +30,19 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.statusStrip2 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.book_statusStrip_books = new System.Windows.Forms.StatusStrip();
+            this.book_statusStripLabel_totalBooks = new System.Windows.Forms.ToolStripStatusLabel();
             this.book_button_search = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.book_textbox_search = new System.Windows.Forms.TextBox();
             this.book_datagrid = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.emp_label_limit = new System.Windows.Forms.Label();
+            this.emp_datagrid_actual = new System.Windows.Forms.DataGridView();
+            this.emp_statusStrip = new System.Windows.Forms.StatusStrip();
+            this.emp_label_quats = new System.Windows.Forms.ToolStripStatusLabel();
+            this.emp_datagrid = new System.Windows.Forms.DataGridView();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.generalRemoveButton = new System.Windows.Forms.Button();
             this.generalEditButton = new System.Windows.Forms.Button();
@@ -77,15 +83,31 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.tabPage_doEmp = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.doEmp_dateTimePicker_today = new System.Windows.Forms.DateTimePicker();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.doEmp_dateTimePicker_choose = new System.Windows.Forms.DateTimePicker();
+            this.doEmp_textBox_tittle = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.statusStrip2.SuspendLayout();
+            this.book_statusStrip_books.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.book_datagrid)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.emp_datagrid_actual)).BeginInit();
+            this.emp_statusStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.emp_datagrid)).BeginInit();
             this.tabPage6.SuspendLayout();
             this.generalStatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.generalDataGrid)).BeginInit();
             this.GeneralToolStrip.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage_doEmp.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -95,6 +117,7 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage_doEmp);
             this.tabControl1.Location = new System.Drawing.Point(3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -104,7 +127,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.statusStrip2);
+            this.tabPage1.Controls.Add(this.book_statusStrip_books);
             this.tabPage1.Controls.Add(this.book_button_search);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.book_textbox_search);
@@ -117,21 +140,20 @@
             this.tabPage1.Text = "Livros";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // statusStrip2
+            // book_statusStrip_books
             // 
-            this.statusStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel2});
-            this.statusStrip2.Location = new System.Drawing.Point(3, 660);
-            this.statusStrip2.Name = "statusStrip2";
-            this.statusStrip2.Size = new System.Drawing.Size(1163, 22);
-            this.statusStrip2.TabIndex = 4;
-            this.statusStrip2.Text = "statusStrip2";
+            this.book_statusStrip_books.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.book_statusStripLabel_totalBooks});
+            this.book_statusStrip_books.Location = new System.Drawing.Point(3, 660);
+            this.book_statusStrip_books.Name = "book_statusStrip_books";
+            this.book_statusStrip_books.Size = new System.Drawing.Size(1163, 22);
+            this.book_statusStrip_books.TabIndex = 4;
+            this.book_statusStrip_books.Text = "statusStrip2";
             // 
-            // toolStripStatusLabel2
+            // book_statusStripLabel_totalBooks
             // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
+            this.book_statusStripLabel_totalBooks.Name = "book_statusStripLabel_totalBooks";
+            this.book_statusStripLabel_totalBooks.Size = new System.Drawing.Size(0, 17);
             // 
             // book_button_search
             // 
@@ -175,6 +197,12 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label11);
+            this.tabPage3.Controls.Add(this.label7);
+            this.tabPage3.Controls.Add(this.emp_label_limit);
+            this.tabPage3.Controls.Add(this.emp_datagrid_actual);
+            this.tabPage3.Controls.Add(this.emp_statusStrip);
+            this.tabPage3.Controls.Add(this.emp_datagrid);
             this.tabPage3.Location = new System.Drawing.Point(4, 27);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -182,6 +210,69 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Emprestimos";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(18, 12);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(244, 30);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Emprestimos Pendentes";
+            // 
+            // emp_label_limit
+            // 
+            this.emp_label_limit.AutoSize = true;
+            this.emp_label_limit.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.emp_label_limit.Location = new System.Drawing.Point(268, 12);
+            this.emp_label_limit.Name = "emp_label_limit";
+            this.emp_label_limit.Size = new System.Drawing.Size(46, 30);
+            this.emp_label_limit.TabIndex = 4;
+            this.emp_label_limit.Text = "0/3";
+            // 
+            // emp_datagrid_actual
+            // 
+            this.emp_datagrid_actual.AllowUserToAddRows = false;
+            this.emp_datagrid_actual.AllowUserToDeleteRows = false;
+            this.emp_datagrid_actual.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.emp_datagrid_actual.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            this.emp_datagrid_actual.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.emp_datagrid_actual.Location = new System.Drawing.Point(18, 45);
+            this.emp_datagrid_actual.Name = "emp_datagrid_actual";
+            this.emp_datagrid_actual.ReadOnly = true;
+            this.emp_datagrid_actual.RowTemplate.Height = 25;
+            this.emp_datagrid_actual.Size = new System.Drawing.Size(1126, 79);
+            this.emp_datagrid_actual.TabIndex = 3;
+            // 
+            // emp_statusStrip
+            // 
+            this.emp_statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.emp_label_quats});
+            this.emp_statusStrip.Location = new System.Drawing.Point(3, 660);
+            this.emp_statusStrip.Name = "emp_statusStrip";
+            this.emp_statusStrip.Size = new System.Drawing.Size(1163, 22);
+            this.emp_statusStrip.TabIndex = 1;
+            this.emp_statusStrip.Text = "statusStrip1";
+            // 
+            // emp_label_quats
+            // 
+            this.emp_label_quats.Name = "emp_label_quats";
+            this.emp_label_quats.Size = new System.Drawing.Size(118, 17);
+            this.emp_label_quats.Text = "toolStripStatusLabel1";
+            // 
+            // emp_datagrid
+            // 
+            this.emp_datagrid.AllowUserToAddRows = false;
+            this.emp_datagrid.AllowUserToDeleteRows = false;
+            this.emp_datagrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.emp_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.emp_datagrid.Location = new System.Drawing.Point(18, 171);
+            this.emp_datagrid.Name = "emp_datagrid";
+            this.emp_datagrid.ReadOnly = true;
+            this.emp_datagrid.RowTemplate.Height = 25;
+            this.emp_datagrid.Size = new System.Drawing.Size(1126, 475);
+            this.emp_datagrid.TabIndex = 0;
             // 
             // tabPage6
             // 
@@ -581,6 +672,122 @@
             this.comboBox1.Size = new System.Drawing.Size(313, 38);
             this.comboBox1.TabIndex = 1;
             // 
+            // tabPage_doEmp
+            // 
+            this.tabPage_doEmp.Controls.Add(this.label10);
+            this.tabPage_doEmp.Controls.Add(this.label9);
+            this.tabPage_doEmp.Controls.Add(this.label8);
+            this.tabPage_doEmp.Controls.Add(this.label6);
+            this.tabPage_doEmp.Controls.Add(this.doEmp_dateTimePicker_today);
+            this.tabPage_doEmp.Controls.Add(this.button7);
+            this.tabPage_doEmp.Controls.Add(this.button6);
+            this.tabPage_doEmp.Controls.Add(this.doEmp_dateTimePicker_choose);
+            this.tabPage_doEmp.Controls.Add(this.doEmp_textBox_tittle);
+            this.tabPage_doEmp.Location = new System.Drawing.Point(4, 27);
+            this.tabPage_doEmp.Name = "tabPage_doEmp";
+            this.tabPage_doEmp.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_doEmp.Size = new System.Drawing.Size(1169, 685);
+            this.tabPage_doEmp.TabIndex = 7;
+            this.tabPage_doEmp.Text = "Fazer um Emprestimo";
+            this.tabPage_doEmp.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label10.Location = new System.Drawing.Point(542, 57);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(73, 25);
+            this.label10.TabIndex = 8;
+            this.label10.Text = "label10";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label9.Location = new System.Drawing.Point(441, 267);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(280, 25);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "Data de Devolução (Até 30 dias)";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(441, 200);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(207, 25);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "Data de Retirada (Hoje)";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(441, 121);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(101, 25);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Id do Livro";
+            // 
+            // doEmp_dateTimePicker_today
+            // 
+            this.doEmp_dateTimePicker_today.Enabled = false;
+            this.doEmp_dateTimePicker_today.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.doEmp_dateTimePicker_today.Location = new System.Drawing.Point(441, 228);
+            this.doEmp_dateTimePicker_today.Name = "doEmp_dateTimePicker_today";
+            this.doEmp_dateTimePicker_today.Size = new System.Drawing.Size(286, 27);
+            this.doEmp_dateTimePicker_today.TabIndex = 4;
+            // 
+            // button7
+            // 
+            this.button7.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button7.Location = new System.Drawing.Point(441, 406);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(286, 44);
+            this.button7.TabIndex = 3;
+            this.button7.Text = "Cancelar";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button6
+            // 
+            this.button6.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button6.Location = new System.Drawing.Point(441, 342);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(286, 44);
+            this.button6.TabIndex = 2;
+            this.button6.Text = "Confirmar";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // doEmp_dateTimePicker_choose
+            // 
+            this.doEmp_dateTimePicker_choose.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.doEmp_dateTimePicker_choose.Location = new System.Drawing.Point(441, 295);
+            this.doEmp_dateTimePicker_choose.Name = "doEmp_dateTimePicker_choose";
+            this.doEmp_dateTimePicker_choose.Size = new System.Drawing.Size(286, 27);
+            this.doEmp_dateTimePicker_choose.TabIndex = 1;
+            // 
+            // doEmp_textBox_tittle
+            // 
+            this.doEmp_textBox_tittle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.doEmp_textBox_tittle.Location = new System.Drawing.Point(441, 149);
+            this.doEmp_textBox_tittle.Name = "doEmp_textBox_tittle";
+            this.doEmp_textBox_tittle.Size = new System.Drawing.Size(286, 36);
+            this.doEmp_textBox_tittle.TabIndex = 0;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label11.Location = new System.Drawing.Point(18, 138);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(261, 30);
+            this.label11.TabIndex = 6;
+            this.label11.Text = "Historico de Emprestimos";
+            // 
             // AdmSys
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -593,9 +800,15 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.statusStrip2.ResumeLayout(false);
-            this.statusStrip2.PerformLayout();
+            this.book_statusStrip_books.ResumeLayout(false);
+            this.book_statusStrip_books.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.book_datagrid)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.emp_datagrid_actual)).EndInit();
+            this.emp_statusStrip.ResumeLayout(false);
+            this.emp_statusStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.emp_datagrid)).EndInit();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
             this.generalStatusStrip.ResumeLayout(false);
@@ -605,6 +818,8 @@
             this.GeneralToolStrip.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage_doEmp.ResumeLayout(false);
+            this.tabPage_doEmp.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -618,8 +833,8 @@
         private TextBox book_textbox_search;
         private DataGridView book_datagrid;
         private TabPage tabPage3;
-        private StatusStrip statusStrip2;
-        private ToolStripStatusLabel toolStripStatusLabel2;
+        private StatusStrip book_statusStrip_books;
+        private ToolStripStatusLabel book_statusStripLabel_totalBooks;
         private TabPage tabPage6;
         private Button generalButtonAdd;
         private Button generalButtonSearch;
@@ -660,5 +875,22 @@
         private ComboBox comboBox4;
         private ComboBox comboBox3;
         private ComboBox comboBox2;
+        private StatusStrip emp_statusStrip;
+        private ToolStripStatusLabel emp_label_quats;
+        private DataGridView emp_datagrid;
+        private Label emp_label_limit;
+        private DataGridView emp_datagrid_actual;
+        private Label label7;
+        private TabPage tabPage_doEmp;
+        private Button button7;
+        private Button button6;
+        private DateTimePicker doEmp_dateTimePicker_choose;
+        private TextBox doEmp_textBox_tittle;
+        private Label label10;
+        private Label label9;
+        private Label label8;
+        private Label label6;
+        private DateTimePicker doEmp_dateTimePicker_today;
+        private Label label11;
     }
 }

@@ -31,16 +31,18 @@ namespace vyse
             MySqlCommand mySqlCommand = conn.CreateCommand();
             MySqlCommand comm = mySqlCommand;
             comm.CommandText = $"SELECT id FROM dim_usuario WHERE login = '{login_textBox_usu.Text}' AND senha = '{login_textBox_password.Text}'";
-            string a = Convert.ToString(comm.ExecuteScalar());
-            conn.Close();
-            if (a != "")
+            string id = Convert.ToString(comm.ExecuteScalar());
+            if (id != "")
             {
-                AdmSys.typeUser = Convert.ToInt32(a);
+                comm.CommandText = $"SELECT tipo FROM dim_usuario WHERE login = '{login_textBox_usu.Text}'";
+                AdmSys.typeUser = Convert.ToInt32(comm.ExecuteScalar());
+                AdmSys.idUser = Convert.ToInt32(id);
                 new AdmSys().Show();
                 this.Hide();
             }
             else
                 MessageBox.Show("Este usuario nao existe no universo","Erro Existencial");
+            conn.Close();
         }
 
         private void cad_button_confirm_Click(object sender, EventArgs e)

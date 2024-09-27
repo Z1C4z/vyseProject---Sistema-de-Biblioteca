@@ -23,23 +23,32 @@ namespace vyse
         private string dataTypeOnTable = "";
         private string senderNow = "";
         public static int typeUser = 0;
+        public static int idUser = 0;
 
         public AdmSys()
         {
             InitializeComponent();
             if (typeUser == 0)
+            {
                 MessageBox.Show("Logado como Cliente", "Sucesso no Login");
+                button1.Text = "Fazer um Emprestimo";
+                tabControl1.TabPages.Remove(tabPage6);
+            }
             else if (typeUser == 1)
+            {
                 MessageBox.Show("Logado como Administrador", "Sucesso no Login");
+                emp_datagrid_actual.Visible = false;
+            }
 
             tabControl1.TabPages.Remove(tabPage2);
+            tabControl1.TabPages.Remove(tabPage_doEmp);
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-                senderNow = sender.ToString();
+            senderNow = sender.ToString();
 
-                switch (sender.ToString())
+            switch (sender.ToString())
             {
                 case "Autores":
                     nowTable = "fato_autor";
@@ -84,14 +93,16 @@ namespace vyse
                         else if (datagrid == 1)
                             book_datagrid.DataSource = ds.Tables[0];
                         else if (datagrid == 2)
-                            generalDataGrid.DataSource = ds.Tables[0];
+                            emp_datagrid.DataSource = ds.Tables[0];
+                        else if (datagrid == 3)
+                            emp_datagrid_actual.DataSource = ds.Tables[0];
                     }
                 }
                 generalStatusCount.Text = $"Quantidade de {senderNow}: {generalDataGrid.Rows.Count}";
             }
-            catch
+            catch (Exception ex)
             {
-
+                MessageBox.Show($"Ocorreu um Erro: {ex.Message}","Falha ao exibir dados");
             }
         }
 
@@ -186,6 +197,7 @@ namespace vyse
                         g.genero AS genero,
                         a.autor AS autor,
                         v.placa AS placa
+                        s.status AS status
                     FROM 
                         dim_livros l
                     JOIN 
@@ -197,11 +209,27 @@ namespace vyse
                     JOIN 
                         fato_autor a ON l.autor = a.id
                     JOIN 
-                        fato_veiculos v ON l.veiculo = v.id;",
+                        fato_veiculos v ON l.veiculo = v.id
+                    JOIN
+                        fato_status s ON l.s;",
+                    
                 1);
-
-                //CommandSQLGeral($"SELECT * FROM {nowTable}",1);
                 tabControl1.TabPages.Remove(tabPage2);
+                book_statusStripLabel_totalBooks.Text = $"Quantidade Total de Livros [ {book_datagrid.Rows.Count} ]";
+            }
+            else if (tabControl1.SelectedTab == tabPage3)
+            {
+                if (typeUser == 1)
+                {
+                    CommandSQLGeral("SELECT * FROM dim_emprestimos", 2);
+                }
+                else if (typeUser == 0)
+                {
+                    CommandSQLGeral($"SELECT * FROM dim_emprestimos WHERE usuario = {idUser} AND NOT (status = 3 OR status = 4)", 2);
+                    CommandSQLGeral($"SELECT * FROM dim_emprestimos WHERE usuario = {idUser} AND (status = 3 OR status = 4)", 3);
+                    emp_label_limit.Text = $"{emp_datagrid_actual.Rows.Count}/3";
+                    emp_label_quats.Text = $"Quantidade de Emprestimos Feitos [ {emp_datagrid.Rows.Count + emp_datagrid_actual.Rows.Count} ].";
+                }
             }
             else if (tabControl1.SelectedTab == tabPage3)
             {
@@ -211,8 +239,26 @@ namespace vyse
 
         private void button1_Click(object sender, EventArgs e)
         {
-            tabControl1.TabPages.Insert(3, tabPage2);
-            tabControl1.SelectedIndex = 3;
+            Button btn = sender as Button;
+            if (btn.Text == "Adicionar um Livro")
+            {
+                tabControl1.TabPages.Insert(3, tabPage2);
+                tabControl1.SelectedIndex = 3;
+            }
+            else
+            {
+                if (book_datagrid.SelectedRows.Count < 0)
+                    MessageBox.Show("Selecione um livro para fazer emprestimos");
+                else
+                {
+                    doEmp_textBox_tittle.Text = book_datagrid.SelectedRows[0].Cells["id"].Value.ToString();
+                    tabControl1.TabPages.Insert(2, tabPage_doEmp);
+                    tabControl1.SelectedIndex = 2;
+                    doEmp_dateTimePicker_choose.MaxDate = DateTime.Today.AddDays(30);
+                    doEmp_dateTimePicker_choose.MinDate = DateTime.Today.AddDays(1);
+                }
+
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -303,5 +349,29 @@ namespace vyse
             ClearAddBookScreen(sender, e);
         }
 
+        private void button7_Click(object sender, EventArgs e)
+        {
+            doEmp_textBox_tittle.Text = "";
+            tabControl1.TabPages.Remove(tabPage_doEmp);
+            tabControl1.SelectedIndex = 0;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            conn.Open();
+            MySqlCommand comm = conn.CreateCommand();
+            comm.CommandText = $"INSERT INTO dim_emprestimos(livro,usuario,retirada,devolucao) VALUES(@livro,@usuario,@retirada,@devolucao)";
+            comm.Parameters.AddWithValue($"@livro", Convert.ToInt32(doEmp_textBox_tittle.Text));
+            comm.Parameters.AddWithValue($"@usuario", idUser);
+            comm.Parameters.AddWithValue($"@retirada", doEmp_dateTimePicker_today.Value.ToString("dd/MM/yyyy"));
+            comm.Parameters.AddWithValue($"@devolucao", doEmp_dateTimePicker_choose.Value.ToString("dd/MM/yyyy"));
+            comm.ExecuteNonQuery();
+            conn.Close();
+            MessageBox.Show("Emprestimo Concluido com sucesso","Sucesso ao Efetuar Emprestimo");
+            doEmp_textBox_tittle.Text = "";
+            tabControl1.TabPages.Remove(tabPage_doEmp);
+            tabControl1.SelectedIndex = 0;
+        }
     }
 }
