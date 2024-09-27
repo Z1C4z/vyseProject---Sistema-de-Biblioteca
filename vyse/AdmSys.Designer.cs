@@ -37,6 +37,7 @@
             this.book_textbox_search = new System.Windows.Forms.TextBox();
             this.book_datagrid = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.emp_label_limit = new System.Windows.Forms.Label();
             this.emp_datagrid_actual = new System.Windows.Forms.DataGridView();
@@ -93,7 +94,7 @@
             this.button6 = new System.Windows.Forms.Button();
             this.doEmp_dateTimePicker_choose = new System.Windows.Forms.DateTimePicker();
             this.doEmp_textBox_tittle = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
+            this.emp_button_returnBook = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.book_statusStrip_books.SuspendLayout();
@@ -197,6 +198,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.emp_button_returnBook);
             this.tabPage3.Controls.Add(this.label11);
             this.tabPage3.Controls.Add(this.label7);
             this.tabPage3.Controls.Add(this.emp_label_limit);
@@ -211,11 +213,21 @@
             this.tabPage3.Text = "Emprestimos";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label11.Location = new System.Drawing.Point(18, 138);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(261, 30);
+            this.label11.TabIndex = 6;
+            this.label11.Text = "Historico de Emprestimos";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(18, 12);
+            this.label7.Location = new System.Drawing.Point(18, 23);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(244, 30);
             this.label7.TabIndex = 5;
@@ -225,7 +237,7 @@
             // 
             this.emp_label_limit.AutoSize = true;
             this.emp_label_limit.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.emp_label_limit.Location = new System.Drawing.Point(268, 12);
+            this.emp_label_limit.Location = new System.Drawing.Point(268, 23);
             this.emp_label_limit.Name = "emp_label_limit";
             this.emp_label_limit.Size = new System.Drawing.Size(46, 30);
             this.emp_label_limit.TabIndex = 4;
@@ -238,7 +250,7 @@
             this.emp_datagrid_actual.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.emp_datagrid_actual.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.emp_datagrid_actual.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.emp_datagrid_actual.Location = new System.Drawing.Point(18, 45);
+            this.emp_datagrid_actual.Location = new System.Drawing.Point(18, 56);
             this.emp_datagrid_actual.Name = "emp_datagrid_actual";
             this.emp_datagrid_actual.ReadOnly = true;
             this.emp_datagrid_actual.RowTemplate.Height = 25;
@@ -778,15 +790,15 @@
             this.doEmp_textBox_tittle.Size = new System.Drawing.Size(286, 36);
             this.doEmp_textBox_tittle.TabIndex = 0;
             // 
-            // label11
+            // emp_button_returnBook
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label11.Location = new System.Drawing.Point(18, 138);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(261, 30);
-            this.label11.TabIndex = 6;
-            this.label11.Text = "Historico de Emprestimos";
+            this.emp_button_returnBook.Location = new System.Drawing.Point(1006, 23);
+            this.emp_button_returnBook.Name = "emp_button_returnBook";
+            this.emp_button_returnBook.Size = new System.Drawing.Size(138, 27);
+            this.emp_button_returnBook.TabIndex = 7;
+            this.emp_button_returnBook.Text = "Devolver Livro";
+            this.emp_button_returnBook.UseVisualStyleBackColor = true;
+            this.emp_button_returnBook.Click += new System.EventHandler(this.emp_button_returnBook_Click);
             // 
             // AdmSys
             // 
@@ -892,5 +904,6 @@
         private Label label6;
         private DateTimePicker doEmp_dateTimePicker_today;
         private Label label11;
+        private Button emp_button_returnBook;
     }
 }

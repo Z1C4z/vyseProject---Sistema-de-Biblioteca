@@ -196,7 +196,7 @@ namespace vyse
                         t.titulo AS titulo,
                         g.genero AS genero,
                         a.autor AS autor,
-                        v.placa AS placa
+                        v.placa AS placa,
                         s.status AS status
                     FROM 
                         dim_livros l
@@ -211,7 +211,7 @@ namespace vyse
                     JOIN 
                         fato_veiculos v ON l.veiculo = v.id
                     JOIN
-                        fato_status s ON l.s;",
+                        fato_status s ON l.status = s.id;",
                     
                 1);
                 tabControl1.TabPages.Remove(tabPage2);
@@ -225,8 +225,36 @@ namespace vyse
                 }
                 else if (typeUser == 0)
                 {
-                    CommandSQLGeral($"SELECT * FROM dim_emprestimos WHERE usuario = {idUser} AND NOT (status = 3 OR status = 4)", 2);
-                    CommandSQLGeral($"SELECT * FROM dim_emprestimos WHERE usuario = {idUser} AND (status = 3 OR status = 4)", 3);
+                    CommandSQLGeral(@$"SELECT 
+                                            a.id AS ID,
+                                            t.titulo AS Livro,
+                                            a.retirada AS Retirada,
+                                            a.devolucao AS Devolução,
+                                            s.status AS Status
+                                        FROM
+                                            dim_emprestimos a
+                                        JOIN
+                                            fato_status s ON a.status = s.id
+                                        JOIN
+                                            fato_titulo t ON a.livro = t.id
+                                        WHERE a.usuario = {idUser} AND NOT(a.status = 3 OR a.status = 4)"
+                    ,2);
+
+                    CommandSQLGeral(@$"SELECT 
+                                        a.id AS ID,
+                                        t.titulo AS Livro,
+                                        a.retirada AS Retirada,
+                                        a.devolucao AS Devolução,
+                                        s.status AS Status
+                                    FROM
+                                        dim_emprestimos a
+                                    JOIN
+                                        fato_status s ON a.status = s.id
+                                    JOIN
+                                        fato_titulo t ON a.livro = t.id
+                                    WHERE a.usuario = {idUser} AND (a.status = 3 OR a.status = 4)"
+                    , 3);
+
                     emp_label_limit.Text = $"{emp_datagrid_actual.Rows.Count}/3";
                     emp_label_quats.Text = $"Quantidade de Emprestimos Feitos [ {emp_datagrid.Rows.Count + emp_datagrid_actual.Rows.Count} ].";
                 }
@@ -361,17 +389,80 @@ namespace vyse
             MySqlConnection conn = new MySqlConnection(connectionString);
             conn.Open();
             MySqlCommand comm = conn.CreateCommand();
+            comm.CommandText = $"SELECT status FROM dim_livros WHERE id = {doEmp_textBox_tittle.Text}";
+
+            if (Convert.ToInt32(comm.ExecuteScalar()) != 1)
+            {
+                MessageBox.Show("Este livro ja esta em um Emprestimo\nPor favor escolha outro livro ou\nespere esta ficar disponivel","Livro Indisponivel");
+                doEmp_textBox_tittle.Text = "";
+                tabControl1.TabPages.Remove(tabPage_doEmp);
+                tabControl1.SelectedIndex = 0;
+                return;
+            }
+
             comm.CommandText = $"INSERT INTO dim_emprestimos(livro,usuario,retirada,devolucao) VALUES(@livro,@usuario,@retirada,@devolucao)";
             comm.Parameters.AddWithValue($"@livro", Convert.ToInt32(doEmp_textBox_tittle.Text));
             comm.Parameters.AddWithValue($"@usuario", idUser);
             comm.Parameters.AddWithValue($"@retirada", doEmp_dateTimePicker_today.Value.ToString("dd/MM/yyyy"));
             comm.Parameters.AddWithValue($"@devolucao", doEmp_dateTimePicker_choose.Value.ToString("dd/MM/yyyy"));
             comm.ExecuteNonQuery();
+            comm.CommandText = $"UPDATE dim_livros SET status = 3 WHERE id = {doEmp_textBox_tittle.Text}";
+            comm.ExecuteNonQuery();
             conn.Close();
             MessageBox.Show("Emprestimo Concluido com sucesso","Sucesso ao Efetuar Emprestimo");
             doEmp_textBox_tittle.Text = "";
             tabControl1.TabPages.Remove(tabPage_doEmp);
             tabControl1.SelectedIndex = 0;
+        }
+
+        private void emp_button_returnBook_Click(object sender, EventArgs e)
+        {
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            conn.Open();
+            MySqlCommand comm = conn.CreateCommand();
+
+            comm.CommandText = $"SELECT livro FROM dim_emprestimos WHERE id = {emp_datagrid_actual.SelectedRows[0].Cells["ID"].Value}";
+            int idBookTemp = Convert.ToInt32(comm.ExecuteScalar());
+
+            comm.CommandText = $"UPDATE dim_livros SET status = 1 WHERE id = {idBookTemp};";
+            comm.ExecuteNonQuery();
+
+            comm.CommandText = $"UPDATE dim_emprestimos SET status = 6 WHERE id = {emp_datagrid_actual.SelectedRows[0].Cells["ID"].Value};";
+            comm.ExecuteNonQuery();
+
+            conn.Close();
+
+            MessageBox.Show("O livro foi devolvido","Sucesso ao efetuar Devolução");
+            CommandSQLGeral(@$"SELECT 
+                                            a.id AS ID,
+                                            t.titulo AS Livro,
+                                            a.retirada AS Retirada,
+                                            a.devolucao AS Devolução,
+                                            s.status AS Status
+                                        FROM
+                                            dim_emprestimos a
+                                        JOIN
+                                            fato_status s ON a.status = s.id
+                                        JOIN
+                                            fato_titulo t ON a.livro = t.id
+                                        WHERE a.usuario = {idUser} AND NOT(a.status = 3 OR a.status = 4)"
+                    , 2);
+
+            CommandSQLGeral(@$"SELECT 
+                                        a.id AS ID,
+                                        t.titulo AS Livro,
+                                        a.retirada AS Retirada,
+                                        a.devolucao AS Devolução,
+                                        s.status AS Status
+                                    FROM
+                                        dim_emprestimos a
+                                    JOIN
+                                        fato_status s ON a.status = s.id
+                                    JOIN
+                                        fato_titulo t ON a.livro = t.id
+                                    WHERE a.usuario = {idUser} AND (a.status = 3 OR a.status = 4)"
+            , 3);
+
         }
     }
 }
