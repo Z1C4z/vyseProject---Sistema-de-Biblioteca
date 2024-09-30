@@ -462,7 +462,7 @@ namespace vyse
                                         fato_titulo t ON a.livro = t.id
                                     WHERE a.usuario = {idUser} AND (a.status = 3 OR a.status = 4)"
             , 3);
-
+            conn.Close();
         }
     }
 }
